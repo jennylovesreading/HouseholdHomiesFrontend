@@ -1,41 +1,80 @@
 import React from 'react';
 
 class UserRegistrationForm extends React.Component {
-  render() {
-    return (
-      <div class="userRegistrationFormContainer">
-            <form id="userRegistrationForm" action="FILL THIS UPPPP" method="POST">
-                <p class="householdHomiesHeading"><a href="#">Household Homies</a></p>
+    constructor() {
+        super();
 
-                <p class="createAccountHeading">Create Account</p>
+        this.state = {
+            firstName: "",
+            lastName: "",
+            email: "",
+            number: "",
+            username: "",
+            password: "",
+            confirmPassword: ""
+        }
 
-                <div class="inputOption">
-                    <label class="inputOptionLabel">Your Full Name</label>
-                    <input class="inputOptionInput" type="name" id="name" name="name"/>
-                </div>
-                <div class="inputOption">
-                    <label class="inputOptionLabel" for="email">Email</label>
-                    <input class="inputOptionInput" type="email" id="email" name="email"/>
-                </div>
-                <div class="inputOption">
-                    <label class="inputOptionLabel" for="password">Password</label>
-                    <input class="inputOptionInput" type="password" id="password" name="password"/>
-                </div>
-                <div class="inputOption">
-                    <label class="inputOptionLabel" for="password2">Confirm Password</label>
-                    <input class="inputOptionInput" type="password" id="password2" name="password2"/>
-                </div>
-        
-                <div id="registerButttonContainer">
-                    <button id="registerButton" type="submit">Register</button>
-                </div>
+        this.handleChange = this.handleChange.bind(this);
+    }
 
-                <label id="existentAccountHeading">Already have an account?</label>
-                <label id="existentAccountLink"><a href="#">Login</a></label>
-            </form>
-        </div>
-    );
-  }
+    handleChange(e) {
+        let name = e.target.name;
+
+        if(name === "firstname") {
+            this.setState({ firstName: e.target.value });
+        } else if(name === "lastname") {
+            this.setState({ lastName: e.target.value });
+        } else if(name === "email") {
+            this.setState({ email: e.target.value });
+        } else if(name === "number") {
+            this.setState({ number: e.target.value });
+        } else if(name === "username") {
+            this.setState({ username: e.target.value });
+        } else if(name === "password") {
+            this.setState({ password: e.target.value });
+        } else if(name === "confirmPassword") {
+            this.setState({ confirmPassword: e.target.value });
+        }
+    }
+
+    render() {
+        const { firstName, lastName, email, number, username, password, confirmPassword } = this.state;
+
+        return (
+            <div>
+                <form>
+                    <label>
+                        <p>First Name</p>
+                        <input type="text" name="firstname" value={firstName} onChange={this.handleChange} />
+                    </label>
+                    <label>
+                        <p>Last Name</p>
+                        <input type="text" name="lastname" value={lastName} onChange={this.handleChange} />
+                    </label>
+                    <label>
+                        <p>Email</p>
+                        <input type="text" name="email" value={email} onChange={this.handleChange} />
+                    </label>
+                    <label>
+                        <p>Phone Number</p>
+                        <input type="text" name="number" value={number} onChange={this.handleChange} />
+                    </label>
+                    <label>
+                        <p>Username</p>
+                        <input type="text" name="username" value={username} onChange={this.handleChange} />
+                    </label>
+                    <label>
+                        <p>Password</p>
+                        <input type="text" name="password" value={password} onChange={this.handleChange} />
+                    </label>
+                    <label>
+                        <p>Confirm Password</p>
+                        <input type="text" name="confirmPassword" value={confirmPassword} onChange={this.handleChange} />
+                    </label>
+                </form>
+            </div>
+        );
+    }
 }
 
 export default UserRegistrationForm;
