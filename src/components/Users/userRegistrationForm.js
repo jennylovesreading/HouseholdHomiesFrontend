@@ -1,4 +1,5 @@
 import React from 'react';
+import axios  from 'axios';
 
 class UserRegistrationForm extends React.Component {
     constructor() {
@@ -15,6 +16,7 @@ class UserRegistrationForm extends React.Component {
         }
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(e) {
@@ -37,12 +39,18 @@ class UserRegistrationForm extends React.Component {
         }
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post("http://localhost:8080/registerUser", this.state)
+        .catch(err => console.log(err.data))
+    }
+
     render() {
         const { firstName, lastName, email, number, username, password, confirmPassword } = this.state;
 
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <label>
                         <p>First Name</p>
                         <input type="text" name="firstname" value={firstName} onChange={this.handleChange} />
@@ -71,6 +79,8 @@ class UserRegistrationForm extends React.Component {
                         <p>Confirm Password</p>
                         <input type="text" name="confirmPassword" value={confirmPassword} onChange={this.handleChange} />
                     </label>
+
+                    <button>Submit</button>
                 </form>
             </div>
         );
