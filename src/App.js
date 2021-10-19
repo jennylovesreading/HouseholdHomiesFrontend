@@ -8,7 +8,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route path="/register" component={UserRegistrationForm} />
+         <Route path="/register" component={UserRegistrationForm} />
+         <Route path="/login" component={UserLoginForm} />     
         </Switch>
       </BrowserRouter>
     </div>
