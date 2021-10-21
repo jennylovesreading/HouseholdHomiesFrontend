@@ -24,8 +24,9 @@ class UserLoginForm extends React.Component {
     }
 
     handleSubmit = (e) => {
+        console.log(this.state);
         e.preventDefault();
-        axios.post("http://localhost:8080/loginUser", this.state)
+        axios.post("http://localhost:8080/login", this.state)
         .catch(err => console.log(err.data))
     }
 

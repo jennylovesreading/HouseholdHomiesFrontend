@@ -41,7 +41,7 @@ class UserRegistrationForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:8080/registerUser", this.state)
+        axios.post("http://localhost:8080/register", this.state)
         .catch(err => console.log(err.data))
     }
 
