@@ -6,13 +6,11 @@ class UserRegistrationForm extends React.Component {
         super();
 
         this.state = {
-            firstName: "",
-            lastName: "",
-            email: "",
-            number: "",
+            houseName: "",
             username: "",
             password: "",
-            confirmPassword: ""
+            confirmPassword: "",
+            errors: []
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -22,14 +20,8 @@ class UserRegistrationForm extends React.Component {
     handleChange(e) {
         let name = e.target.name;
 
-        if(name === "firstname") {
-            this.setState({ firstName: e.target.value });
-        } else if(name === "lastname") {
-            this.setState({ lastName: e.target.value });
-        } else if(name === "email") {
-            this.setState({ email: e.target.value });
-        } else if(name === "number") {
-            this.setState({ number: e.target.value });
+        if(name === "houseName") {
+            this.setState({ houseName: e.target.value });
         } else if(name === "username") {
             this.setState({ username: e.target.value });
         } else if(name === "password") {
@@ -42,30 +34,38 @@ class UserRegistrationForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         axios.post("http://localhost:8080/register", this.state)
+        .then((response) => {
+            this.setState({ errors: [] });
+            
+            console.log(response);
+
+            if(response.status === 200 && response.data === "OK" && window) {
+                console.log("redirecting to login page");
+                this.setState({ houseName: "", username: "",  password: "", errors: [] });
+                window.location.href = "/"; 
+            } else {
+                this.setState({ errors: response.data });
+                console.log(this.state);
+            }
+        })
         .catch(err => console.log(err.data))
     }
 
     render() {
-        const { firstName, lastName, email, number, username, password, confirmPassword } = this.state;
-
+        const { houseName, username, password, confirmPassword, errors } = this.state;
+        // errors is a list of mistakes that we shud render upon a failed registration
         return (
             <div>
+                <div>
+                    {errors.map((error, index) => {
+                        return (<p key={index}>{error}</p>)
+                    })}
+                </div>
+
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        <p>First Name</p>
-                        <input type="text" name="firstname" value={firstName} onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        <p>Last Name</p>
-                        <input type="text" name="lastname" value={lastName} onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        <p>Email</p>
-                        <input type="text" name="email" value={email} onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        <p>Phone Number</p>
-                        <input type="text" name="number" value={number} onChange={this.handleChange} />
+                        <p>House Name</p>
+                        <input type="text" name="houseName" value={houseName} onChange={this.handleChange} />
                     </label>
                     <label>
                         <p>Username</p>

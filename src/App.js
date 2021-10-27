@@ -10,9 +10,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route path="/" component={Homepage} />
           <Route path="/register" component={UserRegistrationForm} />
-          <Route path="/login" component={UserLoginForm} />     
+          <Route path="/login" component={UserLoginForm} />   
+          <Route path="/" component={Homepage} />  
         </Switch>
       </BrowserRouter>
     </div>

@@ -8,6 +8,7 @@ class UserLoginForm extends React.Component {
         this.state = {
             username: "",
             password: "",
+            failedLogin: ""
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,17 +25,32 @@ class UserLoginForm extends React.Component {
     }
 
     handleSubmit = (e) => {
-        console.log(this.state);
         e.preventDefault();
+
+        this.setState({ failedLogin: "" });
+
         axios.post("http://localhost:8080/login", this.state)
+        .then((response) => {
+            console.log(response);
+            if(response.status === 200 && response.data !== "OK" && window) {
+                this.setState({ username: "", password: "", failedLogin: "" });
+                window.location.href = "/"; 
+            } else {
+                this.setState({ failedLogin: "Invalid credentials" });
+            }
+        })
         .catch(err => console.log(err.data))
     }
 
     render() {
-        const { username, password} = this.state;
+        const { username, password, failedLogin} = this.state;
 
         return (
             <div>
+                <div>
+                    {failedLogin && (<p>{failedLogin}</p>)}
+                </div>
+
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         <p>Username</p>
