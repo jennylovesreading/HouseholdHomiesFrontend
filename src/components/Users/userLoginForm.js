@@ -1,70 +1,46 @@
-import React from 'react';
-import axios  from 'axios';
+import React, { useState } from "react";
+import Axios from "axios";
 
-class UserLoginForm extends React.Component {
-    constructor() {
-        super();
+function UserLoginForm() {
+  const [loginUsername, setLoginUsername] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
-        this.state = {
-            username: "",
-            password: "",
-            failedLogin: ""
+  const login = () => {
+    Axios({
+      method: "POST",
+      data: {
+        username: loginUsername,
+        password: loginPassword,
+      },
+      withCredentials: true,
+      url: "http://localhost:4000/login",
+    }).then((res) => {
+        console.log(res);
+        if(res.status === 200 && res.data !== "OK" && window) {
+            console.log("redirecting to home page");
+            setLoginUsername("");
+            setLoginPassword("");
+            window.location.href = "/"; 
         }
+    });
+  };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleChange(e) {
-        let name = e.target.name;
-        if(name === "username") {
-            this.setState({ username: e.target.value });
-        } else if(name === "password") {
-            this.setState({ password: e.target.value });
-        }
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-
-        this.setState({ failedLogin: "" });
-
-        axios.post("http://localhost:8080/login", this.state)
-        .then((response) => {
-            console.log(response);
-            if(response.status === 200 && response.data !== "OK" && window) {
-                this.setState({ username: "", password: "", failedLogin: "" });
-                window.location.href = "/"; 
-            } else {
-                this.setState({ failedLogin: "Invalid credentials" });
-            }
-        })
-        .catch(err => console.log(err.data))
-    }
-
-    render() {
-        const { username, password, failedLogin} = this.state;
-
-        return (
-            <div>
-                <div>
-                    {failedLogin && (<p>{failedLogin}</p>)}
-                </div>
-
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        <p>Username</p>
-                        <input type="text" name="username" value={username} onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        <p>Password</p>
-                        <input type="text" name="password" value={password} onChange={this.handleChange} />
-                    </label>
-                    <button>Submit</button>
-                </form>
-            </div>
-        );
-    }
+  return (
+    <div>
+      <div>
+        <h1>Login</h1>
+        <input
+          placeholder="username"
+          onChange={(e) => setLoginUsername(e.target.value)}
+        />
+        <input
+          placeholder="password"
+          onChange={(e) => setLoginPassword(e.target.value)}
+        />
+        <button onClick={login}>Submit</button>
+      </div>
+    </div>
+  );
 }
 
 export default UserLoginForm;
