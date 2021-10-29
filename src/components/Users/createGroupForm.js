@@ -8,7 +8,8 @@ class createGroupForm extends React.Component {
       this.state = {
           houseName: "",
           members: [{name: "", number: ""}],
-          chores: [""]
+          chores: [""],
+          errors: []
       };
       this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -30,12 +31,8 @@ class createGroupForm extends React.Component {
        ))
     }
 
-    createUIDChores(){
-        return this.state.chores.map((el, i) => (
-          <div key={i}>
-               <input placeholder="Chores" name="chores" value={el.value ||''} onChange={this.handleChangeChores.bind(this, i)} />
-          </div>          
-        ))
+    createUIDChores(){  
+      return this.state.chores.map((el, i) => (i===0 ? (<div key={i}><input placeholder="Chores" name="chores" value="Organizer"/></div>): (<div key={i}><input placeholder="Chores" name="chores" value={el} onChange={this.handleChangeChores.bind(this, i)} /></div>)))
      }
     
     handleChange(i, e) {
@@ -65,10 +62,24 @@ class createGroupForm extends React.Component {
     handleSubmit(event) {
       event.preventDefault();
       console.log(this.state);
-        axios.post("http://localhost:8080/createGroup", this.state)
+        axios.post("http://localhost:4000/createGroup", this.state)
         .then((response) => {
             this.setState({ errors: [] });
-            
+            //setInterval for every week
+            setInterval(() => {
+            axios.put("http://localhost:4000/updateHead")
+            .then((response) => {
+              
+            })
+            }, 604800000);
+
+            //setInterval for every day
+            setInterval(() => {
+            axios.get("http://localhost:4000/sendChores")
+            .then((response) => {
+              //all good and text shouldve sent
+            })
+            }, 864000);
             console.log(response);
 
             if(response.status === 200 && response.data === "OK" && window) {
