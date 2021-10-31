@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
 function UserRegistrationForm() {
@@ -7,28 +7,40 @@ function UserRegistrationForm() {
     const [registerPassword, setRegisterPassword] = useState("");
     const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
 
+    useEffect(() => {
+        Axios({
+            method: "GET",
+            withCredentials: true,
+            url: "http://localhost:4000/",
+        }).then((res) => {
+            if(res.data) {
+                window.location.href = "/"; 
+            }
+        });
+    }, [])
+
     const register = () => {
-    Axios({
-        method: "POST",
-        data: {
-            houseName: registerhouseName,
-            username: registerUsername,
-            password: registerPassword,
-            confirmPassword: registerConfirmPassword
-        },
-        withCredentials: true,
-        url: "http://localhost:4000/register",
-    }).then((res) => {
-        console.log(res);
-        if(res.status === 200 && res.data === "User Created" && window) {
-            console.log("redirecting to login page");
-            setregisterhouseName("");
-            setRegisterUsername("");
-            setRegisterPassword("");
-            setRegisterConfirmPassword("")
-            window.location.href = "/login"; 
-        }
-    });
+        Axios({
+            method: "POST",
+            data: {
+                houseName: registerhouseName,
+                username: registerUsername,
+                password: registerPassword,
+                confirmPassword: registerConfirmPassword
+            },
+            withCredentials: true,
+            url: "http://localhost:4000/register",
+        }).then((res) => {
+            console.log(res);
+            if(res.status === 200 && res.data === "User Created" && window) {
+                console.log("redirecting to login page");
+                setregisterhouseName("");
+                setRegisterUsername("");
+                setRegisterPassword("");
+                setRegisterConfirmPassword("")
+                window.location.href = "/login"; 
+            }
+        });
     };
 
     return (
