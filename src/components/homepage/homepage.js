@@ -41,7 +41,8 @@ function HomePage() {
                 
                 ) : (<div>
                         <h1>Welcome to household homies, please login</h1>
-                        <a href="/login">login</a>
+                        <p><a href="/login">login</a></p>
+                        <p><a href="/register">register</a></p>
                     </div>)}
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
 function CreateGroupForm() {
@@ -6,6 +6,26 @@ function CreateGroupForm() {
     const [houseMateNumber, sethouseMateNumber] = useState();
     const [membersArray, setMembersArray] = useState([]);
     const [choresArray, setchoresArray] = useState(["Organizer"]);
+
+    useEffect(() => {
+        Axios({
+            method: "GET",
+            withCredentials: true,
+            url: "http://localhost:4000/",
+        }).then((res) => {
+            if(res.data) {
+                Axios({
+                    method: "GET",
+                    withCredentials: true,
+                    url: "http://localhost:4000/group",
+                }).then(newRes => {
+                    if(newRes.data) {
+                        window.location.href = "/"; 
+                    }
+                })
+            }
+        }).catch(err => console.log(err));
+    }, [])
 
     const addHouseMate = () => {
         const updatedMembersArray = [
