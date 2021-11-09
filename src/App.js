@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import UserRegistrationForm from "./components/users/userRegistrationForm"
 import UserLoginForm from "./components/users/userLoginForm"
 import Homepage from "./components/homepage/homepage"

@@ -12,6 +12,10 @@ function HomePage() {
             url: "http://localhost:4000/",
         }).then((res) => {
             setUser(res.data);
+            
+            if(!res.data) {
+                window.location.href = "/login"; 
+            }
         });
 
         Axios({
@@ -28,7 +32,7 @@ function HomePage() {
         <div>
             <div>
                 {user ? (<div>
-                    <h1>Welcome {user.username}</h1>
+                    <h1>Welcome resident's of {user.address}</h1>
                     
                     {!group ? (<div>
                         <p>Looks like u need to set up your group, click below:</p>

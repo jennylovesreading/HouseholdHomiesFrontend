@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import "../../stylesheets/userLoginForm.css";
 
 function UserLoginForm() {
   const [loginUsername, setLoginUsername] = useState("");
@@ -38,18 +39,22 @@ function UserLoginForm() {
   };
 
   return (
-    <div>
-      <div>
-        <h1>Login</h1>
+    <div class="mainContainer">
+      <div class="loginContainer">
+        <p class="loginHeader">Sign In</p>
         <input
-          placeholder="username"
-          onChange={(e) => setLoginUsername(e.target.value)}
+            class="loginInput"
+            placeholder="Username"
+            onChange={(e) => setLoginUsername(e.target.value)}
         />
         <input
-          placeholder="password"
-          onChange={(e) => setLoginPassword(e.target.value)}
+            class="loginInput"
+            placeholder="Password"
+            onChange={(e) => setLoginPassword(e.target.value)}
         />
-        <button onClick={login}>Submit</button>
+        <button class="loginButton" onClick={login}>Sign In</button>
+
+        <a href="/register" class="loginRegisterLink">Create an Account</a>
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import "../../stylesheets/userRegistrationForm.css"
 
 function UserRegistrationForm() {
-    const [registerhouseName, setregisterhouseName] = useState("");
+    const [registeraddress, setregisteraddress] = useState("");
     const [registerUsername, setRegisterUsername] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
@@ -23,7 +24,7 @@ function UserRegistrationForm() {
         Axios({
             method: "POST",
             data: {
-                houseName: registerhouseName,
+                address: registeraddress,
                 username: registerUsername,
                 password: registerPassword,
                 confirmPassword: registerConfirmPassword
@@ -34,7 +35,7 @@ function UserRegistrationForm() {
             console.log(res);
             if(res.status === 200 && res.data === "User Created" && window) {
                 console.log("redirecting to login page");
-                setregisterhouseName("");
+                setregisteraddress("");
                 setRegisterUsername("");
                 setRegisterPassword("");
                 setRegisterConfirmPassword("")
@@ -44,26 +45,32 @@ function UserRegistrationForm() {
     };
 
     return (
-    <div>
-        <div>
-        <h1>Register</h1>
-        <input
-            placeholder="houseName"
-            onChange={(e) => setregisterhouseName(e.target.value)}
-        />
-        <input
-            placeholder="username"
-            onChange={(e) => setRegisterUsername(e.target.value)}
-        />
-        <input
-            placeholder="password"
-            onChange={(e) => setRegisterPassword(e.target.value)}
-        />
-        <input
-            placeholder="confirm password"
-            onChange={(e) => setRegisterConfirmPassword(e.target.value)}
-        />
-        <button onClick={register}>Submit</button>
+    <div class="mainContainer">
+        <div class="loginContainer">
+            <p class="registerHeader">Register</p>
+            <input
+                class="registerInput"
+                placeholder="address"
+                onChange={(e) => setregisteraddress(e.target.value)}
+            />
+            <input
+                class="registerInput"
+                placeholder="username"
+                onChange={(e) => setRegisterUsername(e.target.value)}
+            />
+            <input
+                class="registerInput"
+                placeholder="password"
+                onChange={(e) => setRegisterPassword(e.target.value)}
+            />
+            <input
+                class="registerInput"
+                placeholder="confirm password"
+                onChange={(e) => setRegisterConfirmPassword(e.target.value)}
+            />
+            <button class="registerButton" onClick={register}>Submit</button>
+
+            <a href="/login" class="registerLoginLink">Login</a>
         </div>
     </div>
     );
