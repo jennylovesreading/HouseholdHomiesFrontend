@@ -45,32 +45,34 @@ function UserRegistrationForm() {
     };
 
     return (
-    <div class="mainContainer">
-        <div class="loginContainer">
-            <p class="registerHeader">Register</p>
+    <div className="mainContainer">
+        <img className="logo" src='/logo.png' />
+        
+        <div className="loginContainer">
+            <p className="registerHeader">Register</p>
             <input
-                class="registerInput"
+                className="registerInput"
                 placeholder="address"
                 onChange={(e) => setregisteraddress(e.target.value)}
             />
             <input
-                class="registerInput"
+                className="registerInput"
                 placeholder="username"
                 onChange={(e) => setRegisterUsername(e.target.value)}
             />
             <input
-                class="registerInput"
+                className="registerInput"
                 placeholder="password"
                 onChange={(e) => setRegisterPassword(e.target.value)}
             />
             <input
-                class="registerInput"
+                className="registerInput"
                 placeholder="confirm password"
                 onChange={(e) => setRegisterConfirmPassword(e.target.value)}
             />
-            <button class="registerButton" onClick={register}>Submit</button>
+            <button className="registerButton" onClick={register}>Submit</button>
 
-            <a href="/login" class="registerLoginLink">Login</a>
+            <a href="/login" className="registerLoginLink">Login</a>
         </div>
     </div>
     );

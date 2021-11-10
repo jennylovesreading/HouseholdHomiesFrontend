@@ -39,22 +39,24 @@ function UserLoginForm() {
   };
 
   return (
-    <div class="mainContainer">
-      <div class="loginContainer">
-        <p class="loginHeader">Sign In</p>
+    <div className="mainContainer">
+      <img className="logo" src='/logo.png' />
+
+      <div className="loginContainer">
+        <p className="loginHeader">Sign In</p>
         <input
-            class="loginInput"
+            className="loginInput"
             placeholder="Username"
             onChange={(e) => setLoginUsername(e.target.value)}
         />
         <input
-            class="loginInput"
+            className="loginInput"
             placeholder="Password"
             onChange={(e) => setLoginPassword(e.target.value)}
         />
-        <button class="loginButton" onClick={login}>Sign In</button>
+        <button className="loginButton" onClick={login}>Sign In</button>
 
-        <a href="/register" class="loginRegisterLink">Create an Account</a>
+        <a href="/register" className="loginRegisterLink">Create an Account</a>
       </div>
     </div>
   );
