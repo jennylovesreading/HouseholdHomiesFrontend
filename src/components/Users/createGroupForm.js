@@ -37,7 +37,9 @@ function CreateGroupForm() {
         ];
 
         setMembersArray(updatedMembersArray);
-        setchoresArray([...choresArray, []]);
+        if(membersArray.length > 1) {
+            setchoresArray([...choresArray, []]);
+        }
         console.log(choresArray);
     };
 

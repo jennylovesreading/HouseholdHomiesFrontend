@@ -46,8 +46,8 @@ function UserRegistrationForm() {
 
     return (
     <div className="mainContainer">
-        <img className="logo" src='/logo.png' />
-        
+        <img className="logo" src='/logo.png' alt="" />
+
         <div className="loginContainer">
             <p className="registerHeader">Register</p>
             <input
