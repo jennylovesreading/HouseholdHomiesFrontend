@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import "../../stylesheets/createGroupForm.css";
 
 function CreateGroupForm() {
     const [houseMateName, sethouseMateName] = useState();
@@ -13,6 +14,8 @@ function CreateGroupForm() {
             withCredentials: true,
             url: "http://localhost:4000/",
         }).then((res) => {
+            console.log("res.data")
+            console.log(res.data)
             if(res.data) {
                 Axios({
                     method: "GET",
@@ -23,6 +26,8 @@ function CreateGroupForm() {
                         window.location.href = "/"; 
                     }
                 })
+            } else {
+                window.location.href = "/login"; 
             }
         }).catch(err => console.log(err));
     }, [])
@@ -68,54 +73,51 @@ function CreateGroupForm() {
                 setMembersArray([]);
                 setchoresArray(["Organizer"]);
 
-                /*setInterval(() => {
-                    Axios({
-                        method: "GET",
-                        withCredentials: true,
-                        url: "http://localhost:4000/sendChores",
-                    })
-                }, 5000);
-
-                setInterval(() => {
-                    Axios({
-                        method: "PUT",
-                        withCredentials: true,
-                        url: "http://localhost:4000/updateHead",
-                    })
-                }, 604800000);*/
-
                 window.location.href = "/"; 
             }
         });
     };
 
     return (
-        <div>
-            <div>
-                <div>
-                    <p>Add Housemate</p>
-                    <input
-                        placeholder="housemate name"
-                        onChange={(e) => sethouseMateName(e.target.value)} />
+        <div className="mainformContainer">
+            <div className="mainformsubContainer">
+                <p className="mainformContainerHeading">Setup Group</p>
 
-                    <input
-                        placeholder="housemate phone number"
-                        onChange={(e) => sethouseMateNumber(e.target.value)} />
+                <div className="mainformContainerAdd">
+                    <p className="mainformContainersubheading">Add Housemate</p>
+                    
+                    <div>
+                        <input
+                            className="mainformContainerinput"
+                            placeholder="housemate name"
+                            onChange={(e) => sethouseMateName(e.target.value)} />
 
-                    <button onClick={addHouseMate}>Add Housemate</button>
+                        <input
+                            className="mainformContainerinput"
+                            placeholder="housemate phone number"
+                            onChange={(e) => sethouseMateNumber(e.target.value)} />
+                    </div>
+                    
+                    <button className="mainformContainerbutton" onClick={addHouseMate}>Add Housemate</button>
                 </div>
 
-                <div>
-                    <p>Housemate's</p>
+                <div className="mainformContainerAdd">
+                    <p className="mainformContainersubheading2">Current Added Housemate's</p>
                     
                     {membersArray.map((item, index) => 
                         {
                             return (
-                                <div key={index}>
+                                <div 
+                                    key={index}
+                                    className="mainformContainerMemCon">
                                     {Object.entries(item)
                                     .map( ([key, value]) => 
                                         {
-                                            return (<p key={key}>{value}</p>)
+                                            return (<p 
+                                                        key={key}
+                                                        className="mainformContainerMemConElem">
+                                                            {value}
+                                                    </p>)
                                         }
                                     )}
                                 </div>
@@ -124,11 +126,11 @@ function CreateGroupForm() {
                     )}
                 </div>   
 
-                <div>
-                    <p>Chores</p>
+                <div className="mainformContainerAdd">
+                    <p className="mainformContainersubheading">Chores</p>
 
-                    <div> 
-                        {(membersArray.length > 0) && <p>Organizer</p> }
+                    <div className="mainformContainerChore"> 
+                        {(membersArray.length > 0) && <p className="mainformContainerOrg">Organizer</p> }
 
                         {
                         Array.from({ 
@@ -136,6 +138,7 @@ function CreateGroupForm() {
                             }, 
                             (_, i) => 
                                 <input 
+                                    className="mainformContainerinput2"
                                     key={i}
                                     id={i}
                                     onChange={updateChore} />)
@@ -143,7 +146,7 @@ function CreateGroupForm() {
                     </div>
                 </div> 
 
-                <button onClick={register}>Create Group</button>      
+                <button className="mainformContainerSubmit" onClick={register}>Create Group</button>      
             </div>
         </div>
     );

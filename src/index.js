@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { PopupProvider } from 'react-hook-popup';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <PopupProvider>
+      <App />
+    </PopupProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
