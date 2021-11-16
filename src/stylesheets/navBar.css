@@ -37,7 +37,7 @@
 
 .navBarLogo {
     width: 80px;
-    margin-left: 20px;
+    margin: 20px;
 }
 
 .leftLinks {
@@ -58,4 +58,8 @@
 
 .leftLinks:visited, .rightLinks:visited {
     color: white;
+}
+
+.leftLinks:hover, .rightLinks:hover {
+    background-color: var(--site-themed-color-dark);
 }

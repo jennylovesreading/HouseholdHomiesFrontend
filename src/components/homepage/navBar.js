@@ -31,7 +31,7 @@ function NavBar() {
     return (
         <div className="navBarContainer">
             <div className="navBarLeft">
-                <img className="navBarLogo" src='/logo.png' alt="" />
+                <img className="navBarLogo" src='/logoInverse.png' alt="" />
 
                 <a className="leftLinks" href="/">Home</a>
                 <a className="leftLinks" href="/instructions">How Does it Work?</a>
