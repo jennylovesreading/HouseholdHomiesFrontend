@@ -6,16 +6,16 @@ function UserLoginForm() {
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-    useEffect(() => {
-        Axios({
-            method: "GET",
-            withCredentials: true,
-            url: "http://localhost:4000/",
-        }).then((res) => {
-            if(res.data) {
-                window.location.href = "/"; 
-            }
-        });
+  useEffect(() => {
+      Axios({
+          method: "GET",
+          withCredentials: true,
+          url: "http://localhost:4000/",
+      }).then((res) => {
+          if(res.data) {
+              window.location.href = "/"; 
+          }
+      });
     }, [])
 
   const login = () => {
@@ -33,7 +33,7 @@ function UserLoginForm() {
             console.log("redirecting to home page");
             setLoginUsername("");
             setLoginPassword("");
-            window.location.href = "/"; 
+            window.location.href = "/dashboard"; 
         }
     });
   };

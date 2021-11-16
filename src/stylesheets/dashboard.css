@@ -14,16 +14,18 @@
 }
 
 .mainContainer {
+    position: relative;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     background-color: var(--background-color);
 }
 
 .contentContainer {
-    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    justify-content: center;
     width: 100%;
 }
 
@@ -168,6 +170,7 @@
     width: 100%;
     height: 100%;
     border-radius: 6px;
+    cursor: pointer;
     border: none;
     background-color: var(--site-themed-color);
     color: white;
