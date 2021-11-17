@@ -40,7 +40,7 @@ function UserLoginForm() {
 
   return (
     <div className="mainContainer">
-      <img className="logo" src='/logo.png' alt="" />
+      <a href="/"><img className="logo" src='/logo.png' alt="" /></a>
 
       <div className="loginContainer">
         <p className="loginHeader">Sign In</p>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import "../../stylesheets/userLoginForm.css";
+import "../../stylesheets/navBar.css";
 
 function NavBar() {
     const [user, setUser] = useState(null);

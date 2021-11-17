@@ -4,7 +4,6 @@ import Axios from "axios";
 import NavBar from "./navBar"
 import "../../stylesheets/modal.css";
 import "../../stylesheets/dashboard.css";
-import "../../stylesheets/navBar.css"
 
 function Dashboard() {
     const [user, setUser] = useState(null);

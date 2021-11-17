@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import NavBar from "../homepage/navBar"
 import "../../stylesheets/createGroupForm.css";
-import "../../stylesheets/navBar.css"
 
 function CreateGroupForm() {
     const [houseMateName, sethouseMateName] = useState();
