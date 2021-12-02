@@ -13,7 +13,7 @@ function CreateGroupForm() {
         Axios({
             method: "GET",
             withCredentials: true,
-            url: "http://localhost:4000/",
+            url: "https://householdhomies-backend.herokuapp.com/",
         }).then((res) => {
             console.log("res.data")
             console.log(res.data)
@@ -21,7 +21,7 @@ function CreateGroupForm() {
                 Axios({
                     method: "GET",
                     withCredentials: true,
-                    url: "http://localhost:4000/group",
+                    url: "https://householdhomies-backend.herokuapp.com/group",
                 }).then(newRes => {
                     if(newRes.data) {
                         window.location.href = "/"; 
@@ -64,7 +64,7 @@ function CreateGroupForm() {
                 chores: choresArray
             },
             withCredentials: true,
-            url: "http://localhost:4000/createGroup",
+            url: "https://householdhomies-backend.herokuapp.com/createGroup",
         }).then((res) => {
             console.log(res);
             if(res.status === 200 && res.data === "OK" && window) {
