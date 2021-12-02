@@ -12,7 +12,7 @@ function UserRegistrationForm() {
         Axios({
             method: "GET",
             withCredentials: true,
-            url: "http://localhost:4000/",
+            url: "https://householdhomies-backend.herokuapp.com/",
         }).then((res) => {
             if(res.data) {
                 window.location.href = "/"; 
@@ -30,7 +30,7 @@ function UserRegistrationForm() {
                 confirmPassword: registerConfirmPassword
             },
             withCredentials: true,
-            url: "http://localhost:4000/register",
+            url: "https://householdhomies-backend.herokuapp.com/register",
         }).then((res) => {
             console.log(res);
             if(res.status === 200 && res.data === "User Created" && window) {
