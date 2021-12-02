@@ -47,7 +47,7 @@ function Dashboard() {
         Axios({
             method: "GET",
             withCredentials: true,
-            url: "http://localhost:4000/",
+            url: "https://householdhomies-backend.herokuapp.com/",
         }).then((res) => {
             setUser(res.data);
             
