@@ -10,7 +10,7 @@ function UserLoginForm() {
       Axios({
           method: "GET",
           withCredentials: true,
-          url: "http://localhost:4000/",
+          url: "https://householdhomies-backend.herokuapp.com/",
       }).then((res) => {
           if(res.data) {
               window.location.href = "/"; 
@@ -26,7 +26,7 @@ function UserLoginForm() {
         password: loginPassword,
       },
       withCredentials: true,
-      url: "http://localhost:4000/login",
+      url: "https://householdhomies-backend.herokuapp.com/login",
     }).then((res) => {
         console.log(res);
         if(res.status === 200 && res.data !== "No User Exists" && window) {
