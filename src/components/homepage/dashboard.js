@@ -47,7 +47,7 @@ function Dashboard() {
         Axios({
             method: "GET",
             withCredentials: true,
-            url: "http://localhost:4000/",
+            url: "https://householdhomies-backend.herokuapp.com/",
         }).then((res) => {
             setUser(res.data);
             
@@ -59,7 +59,7 @@ function Dashboard() {
         Axios({
             method: "GET",
             withCredentials: true,
-            url: "http://localhost:4000/group",
+            url: "https://householdhomies-backend.herokuapp.com/group",
         }).then((res) => {
             setGroup(res.data);
         });
@@ -75,7 +75,7 @@ function Dashboard() {
                 chores: group.chores
             },
             withCredentials: true,
-            url: "http://localhost:4000/updateChore",
+            url: "https://householdhomies-backend.herokuapp.com/updateChore",
         }).then((res) => {
             setGroup(res.data);
         });
