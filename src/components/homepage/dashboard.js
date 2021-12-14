@@ -50,7 +50,7 @@ function Dashboard() {
             url: "https://householdhomies-backend.herokuapp.com/",
         }).then((res) => {
             setUser(res.data);
-            
+            console.log("res data main: " + res.data);
             if(!res.data) {
                 window.location.href = "/login"; 
             }
@@ -61,6 +61,7 @@ function Dashboard() {
             withCredentials: true,
             url: "https://householdhomies-backend.herokuapp.com/group",
         }).then((res) => {
+            console.log("res data group: " + res.data);
             setGroup(res.data);
         });
     }, [])
